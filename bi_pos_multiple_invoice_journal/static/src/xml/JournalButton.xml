@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="JournalButton" owl="1">
+		<div lass="button invoicejournalmethod" t-on-click="() => this.trigger('click-journalLine', props.journal)">
+			<div class="button journal-name" t-att-data-product-id="props.journal.id" t-on-click="click_set_invoicejournal" t-att-id="props.journal.id" >
+				<div class="journal_name" >
+					<t t-esc="props.journal.name" />
+				</div>
+			</div>
+		</div>
+	</t>
+
+</templates>

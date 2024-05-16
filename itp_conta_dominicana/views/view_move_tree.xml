@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_move_tree_dominicana" model="ir.ui.view">
+            <field name="name">account.move.tree.dominicana</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+				<field name="invoice_date" position="before">
+					<field string="VAT" name="itp_vat_factura" />
+                    <field string="Tipo gasto" name="tipo_de_egreso" optional="show"
+                          attrs="{'readonly':[('state','=','posted')]}"/>
+                    <field string="Tipo ingreso" name="tipo_de_ingreso" optional="show"
+                          attrs="{'readonly':[('state','=','posted')]}"/>
+                    <field string="NCF" name="itp_ncf_proveedor" optional="show"
+                          attrs="{'readonly':[('state','=','posted')]}"/>
+				</field>
+            </field>
+        </record>
+    </data>
+</odoo>

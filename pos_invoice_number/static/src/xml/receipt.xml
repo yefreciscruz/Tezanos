@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt-contact')]" position="inside">
+            <div>
+                <t t-if="env.pos.config.pos_invoice_number and props.order.invoice_number">
+                    <br />
+                    NCF:
+                    <t t-esc="props.order.invoice_number" />
+                    <br /><br />
+                    VENTA MOSTRADOR
+                    <br /><br />
+                    <t t-esc="props.order.journal_name" />
+                    <br />
+                </t>
+            </div>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,50 @@
+.payment-screen .multipleinvoice-container{
+	/*position: relative;*/
+	height: 200px;
+    padding-top: 54px;
+}
+
+.payment-screen .multipleinvoice-container .title{
+	text-align: center;
+	font-size: 28px;
+}
+
+.payment-screen .multipleinvoice-container .invoicejournal-container{
+	/*position: absolute;*/
+	height: 100%;
+}
+.payment-screen .multipleinvoice-container .invoicejournal-container .invoicejournalmethods{
+	/*position: absolute;*/
+	/*height: 100%;*/
+	margin: 16px;
+}
+.invoicejournalmethods .button {
+    background: #e2e2e2;
+    line-height: 74px;
+    font-size: 16px;
+    border: solid 1px rgb(202, 202, 202);
+    border-top-width: 0px;
+    cursor: pointer;
+    text-align: center;
+}
+.invoicejournalmethods .button:first-child {
+    border-top-width: 1px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    height: 74px;
+}
+.invoicejournalmethods .button:last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    height: 74px;
+}
+.invoicejournalmethods .button:active {
+    background: #6ec89b;
+    border-color: rgb(110 200 155);
+    color: white;
+}
+.invoicejournalmethods .button.active {
+    background: #6EC89B;
+    color: white;
+    border-color: #6EC89B;
+}

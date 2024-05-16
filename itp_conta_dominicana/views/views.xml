@@ -1,0 +1,96 @@
+<odoo>
+  <data>
+      <record id="vista_tipo_ingreso_form" model="ir.ui.view">
+          <field name="name">vista_tipo_ingreso_form</field>
+          <field name="model">tipo.ingreso</field>
+          <field name="arch" type="xml">
+              <form string="Tipo de ingreso">
+                  <sheet>
+                      <group colspant="2">
+                          <group>
+                              <field name="name"/>
+                              <field name="activo"/>
+                          </group>
+                      </group>
+                  </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                  </div>
+              </form>
+          </field>
+      </record>
+
+    <record model="ir.ui.view" id="tipoingreso_view_list">
+      <field name="name">tipoingreso.view.list</field>
+      <field name="model">tipo.ingreso</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+          <field name="name"/>
+           <field name="activo"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_tipo_de_ingreso_form" model="ir.actions.act_window">
+            <field name="name">Tipo de ingreso</field>
+            <field name="res_model">tipo.ingreso</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="tipoingreso_view_list"/>
+    </record>
+
+    <menuitem id="tipo_de_ingreso_menu"
+            action="action_tipo_de_ingreso_form"
+            name="Tipo de ingreso"
+            sequence="40"
+            parent="account.menu_finance_receivables"/>
+
+            <record id="vista_tipo_egreso_form" model="ir.ui.view">
+          <field name="name">vista_tipo_egreso_form</field>
+          <field name="model">tipo.egreso</field>
+          <field name="arch" type="xml">
+              <form string="Tipo de bien/servicio comprado">
+                  <sheet>
+                      <group colspant="2">
+                          <group>
+                              <field name="name"/>
+                              <field name="activo"/>
+                          </group>
+                      </group>
+                  </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                  </div>
+              </form>
+          </field>
+      </record>
+
+    <record model="ir.ui.view" id="tipoegreso_view_list">
+      <field name="name">tipoegreso.view.list</field>
+      <field name="model">tipo.egreso</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+          <field name="name"/>
+           <field name="activo"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_tipo_de_egreso_form" model="ir.actions.act_window">
+            <field name="name">Tipo de egreso</field>
+            <field name="res_model">tipo.egreso</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="tipoegreso_view_list"/>
+    </record>
+
+    <menuitem id="tipo_de_egreso_menu"
+            action="action_tipo_de_egreso_form"
+            name="Tipo de egreso"
+            sequence="40"
+            parent="account.menu_finance_payables"/>
+
+  </data>
+</odoo>

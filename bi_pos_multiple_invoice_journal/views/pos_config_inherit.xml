@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+            	<field name='pos_invoice_journal_id' invisible='1' position="replace">
+            		<field name="pos_invoice_journal_id" widget="many2many_tags"/>
+            	</field>
+            </field>
+        </record>
+
+		<record id="create_pdf_wizard" model="ir.actions.act_window">
+			<field name="name">Journal Entry</field>
+			<field name="res_model">journal.moves</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="bi_pos_multiple_invoice_journal.journal_moves_action_wizard"/>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem id="menu_journal_moves_pdf" name="Journal Entry" action="create_pdf_wizard" parent="account.menu_finance_reports" groups="account.group_account_readonly,account.group_account_invoice" sequence="5"/>
+
+	</data>
+</odoo>

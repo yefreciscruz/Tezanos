@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="journal_form_itp" model="ir.ui.view">
+            <field name="name">account.journal.form.itp</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+				<field name="currency_id" position="after">
+                    <field name="itp_fecha_vencimiento" string="Fecha Vencimiento" />
+                    <field name="itp_numero_autorizado" string="Numero Autorizado" />
+                    <field name="itp_intervalo_aviso" string="Notificar antes de" />
+				</field>
+            </field>
+        </record>
+    </data>
+</odoo>

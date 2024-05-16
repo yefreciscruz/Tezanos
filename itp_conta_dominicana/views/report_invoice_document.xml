@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <template id="dte_report_rdo" inherit_id="account.report_invoice_document">
+        <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                <t t-set="o" />
+                    <t t-foreach="docs" t-as="o">
+                        <div class="row mt0">
+                            <div class="col-5 sm-1" >
+                                <h3><b> <span t-field="o.company_id.name" /></b></h3>
+                                <br/> Sucursal xyz
+                                <br/>
+                                RNC: <span t-field="o.company_id.name" />
+                                <br/>
+                                FECHA:  <span t-field="o.date" />
+                            </div>
+                            <div class="col-2 sm-1" >
+                            </div>
+                            <div class="col-5 sm-1" >
+                                <h3> <span t-field="o.journal_id.name" /> </h3>
+                                <br/>
+                                <span t-field="o.name" />
+                                <br/>
+                                Vencimiento secuencia
+                                <span t-field="o.journal_id.itp_fecha_vencimiento" />
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="row mt0">
+                            <div class="col-12 sm-1" >
+                                RNC CLIENTE: <span t-field="o.partner_id.vat" />
+                                <br/> Nombre o razón social: <span t-field="o.partner_id.name" />
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row mt0">
+                            <div class="col-12 sm-1" >
+                                <t t-set="total_total" t-value="0"/>
+                                <t t-set="total_impuesto" t-value="0"/>
+                                <t t-set="total_descuento" t-value="0"/>
+                                <table class="table table-sm" style="text;font: 100% monospace; " width="100%" >
+                                    <thead>
+                                        <tr>
+                                            <th>CANTIDAD</th>
+                                            <th>DESCRIPCIÓN</th>
+                                            <th>PRECIO</th>
+                                            <th style="text-align: right">ITBIS</th>
+                                            <th style="text-align: right">VALOR</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="o.invoice_line_ids" t-as="line" >
+                                            <t t-set="valor_impuesto" t-value="line.price_total - line.price_subtotal"/>
+                                            <t t-set="line_total" t-value="line.price_total" />
+                                            <t t-set="line_sub_total" t-value="line.price_subtotal" />
+                                            <t t-set="line_descuento" t-value="line.discount*line.price_subtotal/100"/>
+
+                                            <td width="15%">
+                                                <span t-esc="'{0:.0f}'.format(line.quantity)"/>
+                                                x
+                                                <span t-field="line.price_unit"/>
+                                            </td>
+                                            <td width="35%" style="text-align: left"><span t-field="line.product_id.name"/></td>
+                                            <td width="15%" style="text-align: right"><span t-field="line.price_unit"/></td>
+                                            <td width="15%" style="text-align: right"><span t-esc="'{0:,.2f}'.format(valor_impuesto)"/></td>
+                                            <td width="20%" style="text-align: right"><span t-esc="'{0:,.2f}'.format(line_sub_total)"/></td>
+                                            <!--<td width="20%" style="text-align: right"><span t-esc="'{0:,.2f}'.format(line_total)"/></td> -->
+
+                                            <t t-set="total_total" t-value="total_total + line_total"/>
+                                            <t t-set="total_impuesto" t-value="total_impuesto + valor_impuesto"/>
+                                            <t t-set="total_descuento" t-value="total_descuento + line_descuento"/>
+                                            <!-- <t t-set="total_descuento" t-value="total_descuento + line_descuento"/> -->
+
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"></td>
+                                            <td>SUBTOTAL</td>
+                                            <td style="text-align: right"> <span t-esc="'{0:,.2f}'.format(total_total)"/> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"></td>
+                                            <td>DESC.</td>
+                                            <td style="text-align: right"> <span t-esc="'{0:,.2f}'.format(total_descuento)"/>  </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"></td>
+                                            <td>ITBIS</td>
+                                            <td style="text-align: right"> <span t-esc="'{0:,.2f}'.format(total_impuesto)"/> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"></td>
+                                            <td><b>TOTAL</b></td>
+                                            <td style="text-align: right"> <span t-esc="'{0:,.2f}'.format(total_total+total_impuesto)"/> </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt0">
+                            <div class="col-12 sm-1" >
+                                <span t-field="o.narration" />
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    </data>
+</odoo>
